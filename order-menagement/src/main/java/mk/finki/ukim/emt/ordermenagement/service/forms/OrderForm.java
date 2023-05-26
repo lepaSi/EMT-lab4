@@ -4,10 +4,10 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;
+import mk.finki.ukim.emt.sharedkernel.domain.financial.Currency;
 
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 @Data

@@ -1,15 +1,20 @@
-package mk.finki.ukim.emt.product.domain.models;
+package mk.finki.ukim.emt.ordermenagement.domain.valueobjects;
 
-import org.springframework.lang.NonNull;
+import jakarta.persistence.Embeddable;
+import lombok.NonNull;
 import mk.finki.ukim.emt.sharedkernel.domain.base.DomainObjectId;
 
+@Embeddable
 public class ProductId extends DomainObjectId {
+
+    public ProductId() {
+        super(ProductId.randomId(ProductId.class).getId());
+    }
+
     public ProductId(@NonNull String uuid) {
         super(uuid);
     }
-    private ProductId(){
-        super(ProductId.randomId(ProductId.class).getId());
-    }
+
 
     public static ProductId of(String uuid) {
         ProductId p = new ProductId(uuid);

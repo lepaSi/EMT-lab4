@@ -1,6 +1,5 @@
 package mk.finki.ukim.emt.sharedkernel.domain.base;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -16,9 +15,12 @@ import java.util.UUID;
 public class DomainObjectId implements Serializable {
     private String id;
 
-    @JsonCreator
     protected DomainObjectId(@NonNull String uuid) {
         this.id = Objects.requireNonNull(uuid, "uuid must not be null");
+    }
+
+    public DomainObjectId() {
+
     }
 
 

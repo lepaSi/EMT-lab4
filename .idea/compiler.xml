@@ -16,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ddd-Pharmacy" target="19" />
       <module name="shered-kernel" target="17" />
     </bytecodeTargetLevel>
   </component>

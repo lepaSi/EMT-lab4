@@ -15,7 +15,7 @@ public class Money implements ValueObject {
     private final double amount;
 
     protected Money(){
-        this.amount =0;
+        this.amount = 0.0;
         this.currency=null;
     }
 
@@ -24,7 +24,7 @@ public class Money implements ValueObject {
         this.amount = amount;
     }
 
-    public static Money valueOd(Currency currency, int amount){
+    public static Money valueOd(Currency currency, double amount){
         return new Money(currency,amount);
     }
 

@@ -1,19 +1,21 @@
 package mk.finki.ukim.emt.ordermenagement.domain.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NonNull;
 import mk.finki.ukim.emt.ordermenagement.domain.valueobjects.Product;
 import mk.finki.ukim.emt.sharedkernel.domain.base.AbstractEntity;
 import mk.finki.ukim.emt.sharedkernel.domain.financial.Currency;
 import mk.finki.ukim.emt.sharedkernel.domain.financial.Money;
-import org.aspectj.weaver.ast.Or;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "naracka")
+@Getter
 public class Order extends AbstractEntity<OrderId> {
     private Instant nadatum;
     @Enumerated(value = EnumType.STRING)
@@ -23,10 +25,19 @@ public class Order extends AbstractEntity<OrderId> {
     @Enumerated(value = EnumType.STRING)
     private Currency currency;
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
-    private Set<OrderItem> orderItemList;
+    private Set<OrderItem> orderItemList = new HashSet<>();
 
     public Order(){
+        super(OrderId.randomId(OrderId.class));
     }
+
+
+    public Order(Instant now, mk.finki.ukim.emt.sharedkernel.domain.financial.Currency currency) {
+        super(OrderId.randomId(OrderId.class));
+        this.nadatum = now;
+        this.currency = currency;
+    }
+
 
     public Money vkupnoc(){
         return orderItemList.stream().map(OrderItem::subtotal).reduce(new Money(currency,0),

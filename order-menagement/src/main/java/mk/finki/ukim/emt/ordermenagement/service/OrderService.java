@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface OrderService {
     OrderId placeOrder(OrderForm orderForm);
     List<Order> findAll();
-    Optional<Order> findById();
+    Optional<Order> findById(OrderId id);
 
     void addItem(OrderId orderId, OrderItemForm orderItemForm)
             throws OrderIdNotExistException;

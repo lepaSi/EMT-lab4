@@ -1,6 +1,7 @@
 package mk.finki.ukim.emt.ordermenagement.domain.valueobjects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import mk.finki.ukim.emt.sharedkernel.domain.base.ValueObject;
 import mk.finki.ukim.emt.sharedkernel.domain.financial.Currency;
@@ -8,24 +9,23 @@ import mk.finki.ukim.emt.sharedkernel.domain.financial.Money;
 
 @Getter
 public class Product implements ValueObject {
-    private final ProduktId id;
+    private final ProductId id;
     private final String name;
     private final Money cenaproiz;
-
-    private final String sostav;
+    private final int sales;
 
     private Product(){
-        this.id = ProduktId.randomId(ProduktId.class);
+        this.id = ProductId.randomId(ProductId.class);
         this.name = "";
         this.cenaproiz = Money.valueOd(Currency.MKD,0);
-        this.sostav = "";
+        this.sales = 0;
     }
 
     @JsonCreator
-    public Product(ProduktId id, String name, Money cenaproiz, String sostav){
+    public Product(ProductId id, @JsonProperty("productName") String name, @JsonProperty("cenaproiz") Money cenaproiz, @JsonProperty("sales") int sales){
         this.id= id;
         this.name = name;
         this.cenaproiz = cenaproiz;
-        this.sostav = sostav;
+        this.sales = sales;
     }
 }

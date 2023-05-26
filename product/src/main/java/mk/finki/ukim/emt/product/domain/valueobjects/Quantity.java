@@ -11,6 +11,6 @@ public class Quantity implements ValueObject {
     private final int kolicinaproiz;
 
     protected Quantity() {
-        this.kolicinaproiz =0;
+        this.kolicinaproiz = 0;
     }
 }
